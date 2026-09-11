@@ -37,7 +37,8 @@ export const api = {
   seed: () => request("/api/simulation/seed", {method:"POST"}),
   emergency: () => request("/api/simulation/emergency", {method:"POST"}),
   optimize: () => request("/api/allocations/optimize", {method:"POST"}),
-  createIncident: (body) => request("/api/incidents", {method:"POST", body:JSON.stringify(body)})
+  createIncident: (body) => request("/api/incidents", {method:"POST", body:JSON.stringify(body)}),
+  predictNeed: (text) => request("/api/needs/predict", {method:"POST", body:JSON.stringify({text})})
 };
 
 export function connectSocket(onEvent) {

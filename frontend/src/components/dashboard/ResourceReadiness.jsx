@@ -33,52 +33,120 @@ const resources = [
   },
 ];
 
+function getAvailabilityStyle(percentage) {
+  if (percentage >= 80) {
+    return {
+      bar: "bg-emerald-500",
+      text: "text-emerald-700",
+      label: "READY",
+    };
+  }
+
+  if (percentage >= 65) {
+    return {
+      bar: "bg-blue-500",
+      text: "text-blue-700",
+      label: "AVAILABLE",
+    };
+  }
+
+  return {
+    bar: "bg-amber-500",
+    text: "text-amber-700",
+    label: "LIMITED",
+  };
+}
+
 export default function ResourceReadiness() {
   return (
     <Panel
       title="Resource Readiness"
       subtitle="Current operational availability"
     >
+      <div className="divide-y divide-slate-100">
 
-      <div className="space-y-5 p-5">
+        {resources.map((resource) => {
+          const style = getAvailabilityStyle(resource.available);
 
-        {resources.map((resource) => (
+          return (
+            <div
+              key={resource.name}
+              className="
+                px-5 py-4
+                transition-colors duration-200
+                hover:bg-slate-50/70
+              "
+            >
+              {/* Resource information */}
+              <div className="flex items-center justify-between gap-4">
 
-          <div key={resource.name}>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`
+                        h-2 w-2 shrink-0 rounded-full
+                        ${style.bar}
+                      `}
+                    />
 
-            <div className="mb-2 flex items-center justify-between">
+                    <span className="truncate text-xs font-semibold text-slate-800">
+                      {resource.name}
+                    </span>
+                  </div>
 
-              <span className="text-xs font-medium text-slate-300">
-                {resource.name}
-              </span>
+                  <span
+                    className={`
+                      ml-4 text-[9px] font-bold
+                      uppercase tracking-wider
+                      ${style.text}
+                    `}
+                  >
+                    {style.label}
+                  </span>
+                </div>
 
-              <span className="text-xs text-slate-400">
-                {resource.value}
-              </span>
+                <div className="shrink-0 text-right">
+                  <p className="text-sm font-bold tracking-tight text-[#0F2744]">
+                    {resource.value}
+                  </p>
 
+                  <p className="text-[9px] text-slate-400">
+                    available units
+                  </p>
+                </div>
+              </div>
+
+              {/* Availability bar */}
+              <div className="mt-3 flex items-center gap-3">
+
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+                  <div
+                    className={`
+                      h-full rounded-full
+                      transition-all duration-500
+                      ${style.bar}
+                    `}
+                    style={{
+                      width: `${resource.available}%`,
+                    }}
+                  />
+                </div>
+
+                <span
+                  className={`
+                    w-10 text-right
+                    text-[10px] font-bold
+                    ${style.text}
+                  `}
+                >
+                  {resource.available}%
+                </span>
+              </div>
             </div>
-
-            <div className="h-1.5 overflow-hidden bg-slate-800">
-
-              <div
-                className="h-full bg-cyan-500"
-                style={{
-                  width: `${resource.available}%`,
-                }}
-              />
-
-            </div>
-
-            <div className="mt-1 text-right text-[9px] text-slate-600">
-              {resource.available}% available
-            </div>
-
-          </div>
-
-        ))}
+          );
+        })}
 
       </div>
-
     </Panel>
   );
 }

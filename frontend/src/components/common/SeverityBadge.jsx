@@ -1,35 +1,42 @@
 const styles = {
-  critical:
-    "border-red-500/30 bg-red-500/10 text-red-400",
-
-  high:
-    "border-orange-500/30 bg-orange-500/10 text-orange-400",
-
-  medium:
-    "border-yellow-500/30 bg-yellow-500/10 text-yellow-400",
-
-  low:
-    "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+  critical: {
+    badge: "border-red-500/40 bg-red-950/40 text-red-300 shadow-[0_0_10px_rgba(239,68,68,0.15)]",
+    dot: "bg-red-400 animate-pulse",
+  },
+  high: {
+    badge: "border-amber-500/40 bg-amber-950/30 text-amber-300",
+    dot: "bg-amber-400",
+  },
+  medium: {
+    badge: "border-yellow-500/30 bg-yellow-950/20 text-yellow-300",
+    dot: "bg-yellow-400",
+  },
+  low: {
+    badge: "border-emerald-500/30 bg-emerald-950/20 text-emerald-300",
+    dot: "bg-emerald-400",
+  },
+  monitoring: {
+    badge: "border-slate-700 bg-slate-900/60 text-slate-300",
+    dot: "bg-slate-400",
+  },
 };
 
-export default function SeverityBadge({ severity = "medium" }) {
-
-  const normalized = severity.toLowerCase();
+export default function SeverityBadge({ severity = "medium", className = "" }) {
+  const normalized = (severity || "medium").toLowerCase();
+  const activeStyle = styles[normalized] || styles.monitoring;
 
   return (
     <span
       className={`
         inline-flex items-center gap-1.5
-        rounded-md border px-2 py-1
-        text-[10px] font-bold uppercase tracking-wider
-        ${styles[normalized] || styles.medium}
+        rounded border px-2 py-0.5
+        font-mono text-[10px] font-semibold uppercase tracking-wider
+        ${activeStyle.badge}
+        ${className}
       `}
     >
-
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />
-
-      {severity}
-
+      <span className={`h-1.5 w-1.5 rounded-full ${activeStyle.dot}`} />
+      {severity || "MONITORING"}
     </span>
   );
 }
