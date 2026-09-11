@@ -70,6 +70,7 @@ temp/
 *.onnx
 *.h5
 *.pkl
+!backend/app/ml/resqgrid_need_model.pkl
 *.joblib
 
 # ---------- Cache ----------
