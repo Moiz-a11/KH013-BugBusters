@@ -35,6 +35,7 @@ import {
 
 import { api, connectSocket } from "./api";
 import VictimReport from "./components/VictimReport";
+import CriticalIncident from "./components/CriticalIncident/CriticalIncident";
 import "./index.css";
 
 /* =========================================================
@@ -42,6 +43,11 @@ import "./index.css";
 ========================================================= */
 
 const navigation = [
+  {
+    name: "Critical Incidents",
+    path: "/critical-incident",
+    icon: ShieldAlert,
+  },
   {
     name: "Dashboard",
     path: "/",
@@ -274,7 +280,7 @@ function Sidebar() {
             >
               <Icon className="h-4 w-4" />
 
-              <span>{item.name}</span>
+              <span>{item.name || item.label}</span>
             </NavLink>
           );
         })}
@@ -1008,88 +1014,8 @@ function Dashboard({
 
       </Panel>
 
-      {/* Incident intake */}
-      <Panel
-        title="Emergency Incident Intake"
-        subtitle="LLM-ready structured incident reporting"
-      >
-
-        <form
-          onSubmit={create}
-          className="grid gap-4 p-5 lg:grid-cols-[180px_180px_1fr_180px]"
-        >
-
-          <select
-            value={form.zone_id}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                zone_id: e.target.value,
-              })
-            }
-            className="border border-slate-700 bg-slate-950 px-3 py-3 text-xs text-white outline-none focus:border-cyan-500"
-          >
-            {[
-              "ZONE-A",
-              "ZONE-B",
-              "ZONE-C",
-              "ZONE-D",
-              "ZONE-E",
-            ].map((z) => (
-              <option key={z}>{z}</option>
-            ))}
-          </select>
-
-          <select
-            value={form.disaster_type}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                disaster_type: e.target.value,
-              })
-            }
-            className="border border-slate-700 bg-slate-950 px-3 py-3 text-xs text-white outline-none focus:border-cyan-500"
-          >
-            {[
-              "flood",
-              "earthquake",
-              "cyclone",
-              "landslide",
-              "fire",
-              "other",
-            ].map((type) => (
-              <option key={type}>{type}</option>
-            ))}
-          </select>
-
-          <textarea
-            required
-            minLength={5}
-            value={form.report}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                report: e.target.value,
-              })
-            }
-            rows="1"
-            placeholder="Describe the emergency situation..."
-            className="resize-none border border-slate-700 bg-slate-950 px-3 py-3 text-xs text-white outline-none placeholder:text-slate-600 focus:border-cyan-500"
-          />
-
-          <button
-            disabled={busy}
-            className="border border-cyan-400/30 bg-cyan-500/10 px-4 py-3 text-xs font-bold text-cyan-400 hover:bg-cyan-500/20 disabled:opacity-50"
-          >
-            {busy
-              ? "PROCESSING..."
-              : "ANALYZE & REPORT"}
-          </button>
-
-        </form>
-
-      </Panel>
-
+    
+      
     </div>
   );
 }
@@ -1901,13 +1827,22 @@ function Application() {
             />
 
 
-            <Route
-              path="/incidents"
-              element={
-                <IncidentsPage
-                  incidents={incidents}
-                />
-              }
+           <Route
+            path="/incidents"
+            element={
+              <IncidentsPage
+                incidents={incidents}
+              />
+            }
+          />
+
+          <Route
+            path="/critical-incident"
+            element={
+              <CriticalIncident
+                zones={zones}
+              />
+            }
             />
 
             <Route

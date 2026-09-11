@@ -1,45 +1,102 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
+
 from app.store import store
 from app.graph.disaster_workflow import run_incident_workflow
 from app.realtime import manager
 
+
 router = APIRouter()
+
 
 class IncidentCreate(BaseModel):
     zone_id: str
     report: str = Field(min_length=5)
     disaster_type: str | None = None
 
+
 @router.post("")
 async def create_incident(payload: IncidentCreate):
+
+    # Check whether the selected zone exists
     if payload.zone_id not in store.zones:
-        raise HTTPException(404, "Zone not found")
-    iid = f"INC-{len(store.incidents)+1:04d}"
+        raise HTTPException(
+            status_code=404,
+            detail="Zone not found"
+        )
+
+    # Generate incident ID
+    iid = f"INC-{len(store.incidents) + 1:04d}"
+
+    # Run AI incident analysis workflow
     result = run_incident_workflow(
-        payload.report, payload.zone_id, payload.disaster_type,
-        list(store.incidents.values()), list(store.allocations.values()), list(store.resources.values())
+        payload.report,
+        payload.zone_id,
+        payload.disaster_type,
+        list(store.incidents.values()),
+        list(store.allocations.values()),
+        list(store.resources.values())
     )
+
+    # Add incident metadata
     result.update({
-        "incident_id": iid, "status": "active",
-        "created_at": store.now(), "updated_at": store.now()
+        "incident_id": iid,
+        "status": "active",
+        "created_at": store.now(),
+        "updated_at": store.now()
     })
+
+    # Store incident
     store.incidents[iid] = result
+
+    # Update affected zone
     zone = store.zones[payload.zone_id]
-    zone.update({"population": result["people_affected"], "severity": result["severity"],
-                 "priority_score": result["priority_score"], "status": "active"})
-    store.add_audit("INCIDENT_CREATED", f"{zone['name']} incident created; priority {result['priority_score']}", "report_agent", iid)
+
+    zone.update({
+        "population": result["people_affected"],
+        "severity": result["severity"],
+        "priority_score": result["priority_score"],
+        "status": "active"
+    })
+
+    # Audit incident creation
+    store.add_audit(
+        "INCIDENT_CREATED",
+        f"{zone['name']} incident created; priority {result['priority_score']}",
+        "report_agent",
+        iid
+    )
+
+    # Audit duplicate effort detection
     if result["duplicate_check"]["detected"]:
-        store.add_audit("DUPLICATE_DETECTED", f"Overlapping effort detected in {zone['name']}", "duplicate_agent", iid)
-    await manager.broadcast("INCIDENT_CREATED", result)
+        store.add_audit(
+            "DUPLICATE_DETECTED",
+            f"Overlapping effort detected in {zone['name']}",
+            "duplicate_agent",
+            iid
+        )
+
+    # Broadcast real-time update
+    await manager.broadcast(
+        "INCIDENT_CREATED",
+        result
+    )
+
     return result
+
 
 @router.get("")
 def list_incidents():
     return list(store.incidents.values())
 
+
 @router.get("/{incident_id}")
 def get_incident(incident_id: str):
+
     if incident_id not in store.incidents:
-        raise HTTPException(404, "Incident not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Incident not found"
+        )
+
     return store.incidents[incident_id]
