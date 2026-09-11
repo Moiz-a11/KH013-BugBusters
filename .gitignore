@@ -110,3 +110,8 @@ appendonly.aof
 *.temp
 *.swp
 *.swo
+
+# Environment variables
+.env
+.env.*
+!.env.example
