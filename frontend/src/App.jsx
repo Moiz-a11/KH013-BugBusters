@@ -34,7 +34,7 @@ import {
 } from "react-leaflet";
 
 import { api, connectSocket } from "./api";
-
+import VictimReport from "./components/VictimReport";
 import "./index.css";
 
 /* =========================================================
@@ -1875,6 +1875,32 @@ function Application() {
               }
             />
 
+             {/* Victim Emergency Reporting */}
+           <Route
+              path="/report"
+              element={<VictimReport zones={zones} />}
+            />
+
+            <Route
+              path="/"
+              element={
+                <Dashboard
+                  summary={summary}
+                  ranked={ranked}
+                  resources={resources}
+                  missions={missions}
+                  audit={audit}
+                  zones={zones}
+                  form={form}
+                  setForm={setForm}
+                  create={create}
+                  busy={busy}
+                  action={action}
+                />
+              }
+            />
+
+
             <Route
               path="/incidents"
               element={
@@ -1941,6 +1967,7 @@ function Application() {
             />
 
             <Route
+            
               path="/settings"
               element={
                 <Page title="Settings">
