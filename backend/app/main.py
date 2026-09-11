@@ -2,7 +2,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routes import incidents, resources, agencies, allocations, dashboard, simulation, missions, audit, websocket
+from app.routes import (
+    incidents,
+    resources,
+    agencies,
+    allocations,
+    dashboard,
+    simulation,
+    missions,
+    audit,
+    websocket,
+    need,
+)
 from app.services.bootstrap import bootstrap_demo
 
 app = FastAPI(title=settings.APP_NAME, version="1.0.0")
@@ -25,6 +36,7 @@ app.include_router(simulation.router, prefix="/api/simulation", tags=["Simulatio
 app.include_router(missions.router, prefix="/api/missions", tags=["Missions"])
 app.include_router(audit.router, prefix="/api/audit-logs", tags=["Audit"])
 app.include_router(websocket.router, prefix="/ws", tags=["WebSocket"])
+app.include_router(need.router, prefix="/api/needs", tags=["Needs"])
 
 @app.on_event("startup")
 async def startup():
