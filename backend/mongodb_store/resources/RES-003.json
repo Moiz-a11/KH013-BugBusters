@@ -1,0 +1,9 @@
+{
+  "_id": "RES-003",
+  "resource_id": "RES-003",
+  "type": "medical_kit",
+  "quantity": 500,
+  "available_quantity": 300,
+  "agency_id": "AG-002",
+  "status": "available"
+}

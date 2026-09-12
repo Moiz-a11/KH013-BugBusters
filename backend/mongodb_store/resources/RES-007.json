@@ -1,0 +1,9 @@
+{
+  "_id": "RES-007",
+  "resource_id": "RES-007",
+  "type": "shelter",
+  "quantity": 2000,
+  "available_quantity": 1200,
+  "agency_id": "AG-003",
+  "status": "available"
+}

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from app.store import store
-from app.routes.incidents import IncidentCreate, create_incident
+from app.routes.incidents import IncidentCreate, create_incident, approve_incident
 from app.routes.allocations import optimize
 from app.realtime import manager
 
@@ -27,9 +27,11 @@ async def seed():
     bootstrap_demo()
     created = []
     for zone, report, kind in SCENARIO:
-        created.append(await create_incident(IncidentCreate(zone_id=zone, report=report, disaster_type=kind)))
+        inc = await create_incident(IncidentCreate(zone_id=zone, report=report, disaster_type=kind))
+        approved = await approve_incident(inc["incident_id"])
+        created.append(approved)
     await optimize()
-    store.add_audit("SCENARIO_SEEDED", "Five-zone disaster simulation loaded", "simulation")
+    store.add_audit("SCENARIO_SEEDED", "Five-zone disaster simulation loaded and approved", "simulation")
     await manager.broadcast("SCENARIO_SEEDED", {"zones": 5})
     return {"message": "Five-zone scenario seeded", "incidents": created}
 
@@ -40,11 +42,12 @@ async def emergency():
         disaster_type="flood",
         report="URGENT: Zone B hospital collapsed. 800 additional people are trapped, including elderly patients. Immediate rescue and medical assistance required."
     )
-    incident = await create_incident(payload)
+    inc = await create_incident(payload)
+    approved = await approve_incident(inc["incident_id"])
     result = await optimize()
-    store.add_audit("EMERGENCY_REALLOCATION", "Zone B emergency triggered; global resources recalculated", "simulation", incident["incident_id"])
-    await manager.broadcast("EMERGENCY_REALLOCATION", {"incident": incident, "result": result})
-    return {"incident": incident, "reallocation": result}
+    store.add_audit("EMERGENCY_REALLOCATION", "Zone B emergency triggered; global resources recalculated", "simulation", approved["incident_id"])
+    await manager.broadcast("EMERGENCY_REALLOCATION", {"incident": approved, "result": result})
+    return {"incident": approved, "reallocation": result}
 
 @router.post("/report")
 async def simulated_report(payload: SimulationReport):

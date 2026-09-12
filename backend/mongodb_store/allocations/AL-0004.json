@@ -1,0 +1,12 @@
+{
+  "_id": "AL-0004",
+  "allocation_id": "AL-0004",
+  "incident_id": "INC-0001",
+  "zone_id": "ZONE-A",
+  "resource_id": "RES-004",
+  "resource_type": "rescue_team",
+  "quantity": 2,
+  "agency_id": "AG-001",
+  "status": "allocated",
+  "created_at": "2026-09-12T09:16:04.116644+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "_id": "LOG-00036",
+  "log_id": "LOG-00036",
+  "event_type": "DUPLICATE_DETECTED",
+  "description": "Overlapping effort detected in ZONE-B",
+  "actor": "duplicate_agent",
+  "incident_id": "INC-0010",
+  "timestamp": "2026-09-12T09:16:03.897288+00:00",
+  "metadata": {}
+}

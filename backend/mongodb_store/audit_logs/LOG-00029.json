@@ -1,0 +1,10 @@
+{
+  "_id": "LOG-00029",
+  "log_id": "LOG-00029",
+  "event_type": "REPORT_RECEIVED",
+  "description": "Public emergency report INC-0009 received for ZONE-A; awaiting EOC approval",
+  "actor": "public_user",
+  "incident_id": "INC-0009",
+  "timestamp": "2026-09-12T08:23:18.833049+00:00",
+  "metadata": {}
+}

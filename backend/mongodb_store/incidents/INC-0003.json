@@ -1,0 +1,32 @@
+{
+  "_id": "INC-0003",
+  "zone_id": "ZONE-C",
+  "disaster_type": "flood",
+  "people_affected": 700,
+  "medical_emergency": false,
+  "rescue_required": false,
+  "infrastructure_damage": false,
+  "vulnerable_population": false,
+  "raw_text": "Moderate flood. 700 people need food and clean water.",
+  "needs": {
+    "food_packet": 420,
+    "water_bottle": 700,
+    "medical_kit": 20,
+    "rescue_team": 0,
+    "ambulance": 0,
+    "shelter": 210,
+    "boat": 0
+  },
+  "priority_score": 5.6,
+  "severity": "LOW",
+  "priority_reasons": [],
+  "duplicate_check": {
+    "detected": false,
+    "overlap": {},
+    "existing_allocations": []
+  },
+  "incident_id": "INC-0003",
+  "status": "active",
+  "created_at": "2026-09-12T06:15:19.542965+00:00",
+  "updated_at": "2026-09-12T06:15:19.545836+00:00"
+}

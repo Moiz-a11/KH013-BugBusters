@@ -1,0 +1,34 @@
+{
+  "_id": "INC-0002",
+  "zone_id": "ZONE-B",
+  "disaster_type": "flood",
+  "people_affected": 1500,
+  "medical_emergency": false,
+  "rescue_required": true,
+  "infrastructure_damage": false,
+  "vulnerable_population": false,
+  "raw_text": "High flood. 1500 people are affected and roads are blocked. Rescue is required.",
+  "needs": {
+    "food_packet": 900,
+    "water_bottle": 1500,
+    "medical_kit": 30,
+    "rescue_team": 2,
+    "ambulance": 0,
+    "shelter": 450,
+    "boat": 1
+  },
+  "priority_score": 27.0,
+  "severity": "LOW",
+  "priority_reasons": [
+    "rescue required"
+  ],
+  "duplicate_check": {
+    "detected": false,
+    "overlap": {},
+    "existing_allocations": []
+  },
+  "incident_id": "INC-0002",
+  "status": "active",
+  "created_at": "2026-09-12T06:15:19.501480+00:00",
+  "updated_at": "2026-09-12T06:15:19.504133+00:00"
+}

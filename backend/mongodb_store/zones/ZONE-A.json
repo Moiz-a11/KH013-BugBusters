@@ -1,0 +1,11 @@
+{
+  "_id": "ZONE-A",
+  "zone_id": "ZONE-A",
+  "name": "Zone A",
+  "latitude": 18.5204,
+  "longitude": 73.8567,
+  "population": 0,
+  "severity": "LOW",
+  "priority_score": 0.0,
+  "status": "active"
+}

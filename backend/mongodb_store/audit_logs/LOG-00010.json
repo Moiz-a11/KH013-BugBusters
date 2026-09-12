@@ -1,0 +1,12 @@
+{
+  "_id": "LOG-00010",
+  "log_id": "LOG-00010",
+  "event_type": "ALLOCATION_OPTIMIZED",
+  "description": "Global allocation recalculated for 3 active incidents",
+  "actor": "allocation_agent",
+  "incident_id": null,
+  "timestamp": "2026-09-12T06:15:19.596497+00:00",
+  "metadata": {
+    "allocation_count": 15
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "_id": "AG-002",
+  "agency_id": "AG-002",
+  "name": "Health Department",
+  "capabilities": [
+    "ambulance",
+    "medical_kit"
+  ],
+  "status": "active"
+}

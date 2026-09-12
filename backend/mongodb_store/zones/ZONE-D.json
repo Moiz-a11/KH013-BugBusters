@@ -1,0 +1,11 @@
+{
+  "_id": "ZONE-D",
+  "zone_id": "ZONE-D",
+  "name": "Zone D",
+  "latitude": 18.5913,
+  "longitude": 73.7389,
+  "population": 0,
+  "severity": "LOW",
+  "priority_score": 15.0,
+  "status": "active"
+}

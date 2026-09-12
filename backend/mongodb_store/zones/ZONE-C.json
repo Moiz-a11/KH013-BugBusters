@@ -1,0 +1,11 @@
+{
+  "_id": "ZONE-C",
+  "zone_id": "ZONE-C",
+  "name": "Zone C",
+  "latitude": 18.5074,
+  "longitude": 73.8077,
+  "population": 700,
+  "severity": "LOW",
+  "priority_score": 5.6,
+  "status": "active"
+}

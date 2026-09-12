@@ -1,0 +1,108 @@
+{
+  "_id": "INC-0006",
+  "zone_id": "ZONE-D",
+  "disaster_type": "flood",
+  "people_affected": 0,
+  "medical_emergency": false,
+  "rescue_required": true,
+  "infrastructure_damage": false,
+  "vulnerable_population": false,
+  "raw_text": "i am trapped in house, having floods all around and no food and water",
+  "needs": {
+    "food_packet": 100,
+    "water_bottle": 150,
+    "medical_kit": 20,
+    "rescue_team": 2,
+    "ambulance": 0,
+    "shelter": 100,
+    "boat": 1
+  },
+  "priority_score": 15.0,
+  "severity": "LOW",
+  "priority_reasons": [
+    "rescue required"
+  ],
+  "duplicate_check": {
+    "detected": true,
+    "overlap": {
+      "food_packet": 100,
+      "water_bottle": 150,
+      "medical_kit": 20,
+      "rescue_team": 2,
+      "ambulance": 0,
+      "shelter": 100
+    },
+    "existing_allocations": [
+      {
+        "allocation_id": "AL-0008",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-001",
+        "resource_type": "food_packet",
+        "quantity": 1800,
+        "agency_id": "AG-003",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.842851+00:00"
+      },
+      {
+        "allocation_id": "AL-0009",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-002",
+        "resource_type": "water_bottle",
+        "quantity": 3000,
+        "agency_id": "AG-003",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.844607+00:00"
+      },
+      {
+        "allocation_id": "AL-0010",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-003",
+        "resource_type": "medical_kit",
+        "quantity": 180,
+        "agency_id": "AG-002",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.846322+00:00"
+      },
+      {
+        "allocation_id": "AL-0011",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-004",
+        "resource_type": "rescue_team",
+        "quantity": 2,
+        "agency_id": "AG-001",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.848565+00:00"
+      },
+      {
+        "allocation_id": "AL-0012",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-005",
+        "resource_type": "ambulance",
+        "quantity": 2,
+        "agency_id": "AG-002",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.850394+00:00"
+      },
+      {
+        "allocation_id": "AL-0013",
+        "incident_id": "INC-0004",
+        "zone_id": "ZONE-D",
+        "resource_id": "RES-007",
+        "resource_type": "shelter",
+        "quantity": 800,
+        "agency_id": "AG-003",
+        "status": "allocated",
+        "created_at": "2026-09-12T06:17:13.851968+00:00"
+      }
+    ]
+  },
+  "incident_id": "INC-0006",
+  "status": "active",
+  "created_at": "2026-09-12T06:20:26.597876+00:00",
+  "updated_at": "2026-09-12T06:20:41.217404+00:00"
+}

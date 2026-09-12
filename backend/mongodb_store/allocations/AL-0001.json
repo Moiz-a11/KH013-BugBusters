@@ -1,0 +1,12 @@
+{
+  "_id": "AL-0001",
+  "allocation_id": "AL-0001",
+  "incident_id": "INC-0001",
+  "zone_id": "ZONE-A",
+  "resource_id": "RES-001",
+  "resource_type": "food_packet",
+  "quantity": 800,
+  "agency_id": "AG-003",
+  "status": "allocated",
+  "created_at": "2026-09-12T09:16:04.084384+00:00"
+}

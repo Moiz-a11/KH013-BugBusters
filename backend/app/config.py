@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     APP_NAME: str = "PS20 Disaster Coordinator"
 
-    MONGODB_URI: str = ""
+    MONGODB_URI: str = "mongodb://localhost:27017"
     MONGODB_DB: str = "ps20"
 
     REDIS_URL: str = "redis://localhost:6379/0"

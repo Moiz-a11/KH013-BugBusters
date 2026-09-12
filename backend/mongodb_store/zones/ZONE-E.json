@@ -1,0 +1,11 @@
+{
+  "_id": "ZONE-E",
+  "zone_id": "ZONE-E",
+  "name": "Zone E",
+  "latitude": 18.5642,
+  "longitude": 73.7769,
+  "population": 900,
+  "severity": "LOW",
+  "priority_score": 12.2,
+  "status": "active"
+}

@@ -12,44 +12,44 @@ export default function Panel({
   return (
     <section
       className={`
-        relative overflow-hidden rounded-lg border
-        ${isEmergency ? "border-red-500/30 bg-[#0c0d14]/95 shadow-[0_4px_24px_-4px_rgba(239,68,68,0.1)]" : "border-slate-800/80 bg-[#080d16]/95"}
-        backdrop-blur-sm transition-all duration-200
+        relative overflow-hidden rounded-xl border
+        ${isEmergency ? "border-red-200 bg-white shadow-sm ring-1 ring-red-100" : "border-slate-200 bg-white shadow-sm"}
+        transition-all duration-200
         ${className}
       `}
     >
-      {/* Top micro-telemetry accent line */}
+      {/* Top accent line */}
       <div 
-        className={`h-[1.5px] w-full ${
+        className={`h-[2px] w-full ${
           isEmergency 
-            ? "bg-gradient-to-r from-red-500/60 via-red-500 to-transparent" 
-            : "bg-gradient-to-r from-cyan-500/40 via-slate-700/30 to-transparent"
+            ? "bg-gradient-to-r from-red-600 via-red-500 to-transparent" 
+            : "bg-gradient-to-r from-blue-700 via-blue-500 to-transparent"
         }`} 
       />
 
       {(title || subtitle || action || badge) && (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 px-5 py-3.5 bg-slate-950/40">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-3.5 bg-slate-50/60">
           <div className="flex items-center gap-2.5">
             {isEmergency ? (
               <span className="h-2 w-2 rounded-full bg-red-500 beacon-critical" />
             ) : (
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+              <span className="h-2 w-2 rounded-full bg-blue-600" />
             )}
             <div>
               <div className="flex items-center gap-2">
                 {title && (
-                  <h2 className="text-xs font-bold tracking-wide uppercase text-slate-100">
+                  <h2 className="text-xs font-bold tracking-wider uppercase text-slate-900">
                     {title}
                   </h2>
                 )}
                 {badge && (
-                  <span className="px-1.5 py-0.5 text-[9px] font-mono font-semibold rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                  <span className="px-1.5 py-0.5 text-[9px] font-mono font-semibold rounded bg-blue-50 text-blue-700 border border-blue-200">
                     {badge}
                   </span>
                 )}
               </div>
               {subtitle && (
-                <p className="mt-0.5 text-[11px] text-slate-400">
+                <p className="mt-0.5 text-[11px] text-slate-500">
                   {subtitle}
                 </p>
               )}

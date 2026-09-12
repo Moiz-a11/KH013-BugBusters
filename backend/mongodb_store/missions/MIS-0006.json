@@ -1,0 +1,11 @@
+{
+  "_id": "MIS-0006",
+  "mission_id": "MIS-0006",
+  "incident_id": "INC-0001",
+  "zone_id": "ZONE-A",
+  "agency_id": "AG-001",
+  "resource_type": "boat",
+  "quantity": 1,
+  "status": "dispatched",
+  "created_at": "2026-09-12T09:16:04.139583+00:00"
+}

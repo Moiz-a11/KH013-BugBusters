@@ -1,0 +1,9 @@
+{
+  "_id": "RES-006",
+  "resource_id": "RES-006",
+  "type": "boat",
+  "quantity": 5,
+  "available_quantity": 3,
+  "agency_id": "AG-001",
+  "status": "available"
+}

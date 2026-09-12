@@ -114,4 +114,4 @@ appendonly.aof
 # Environment variables
 .env
 .env.*
-!.env.example
+!.env.examplebackend/mongodb_store/

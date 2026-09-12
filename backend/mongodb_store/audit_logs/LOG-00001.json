@@ -1,0 +1,10 @@
+{
+  "_id": "LOG-00001",
+  "log_id": "LOG-00001",
+  "event_type": "SYSTEM_INITIALIZED",
+  "description": "Five-zone demo environment initialized",
+  "actor": "system",
+  "incident_id": null,
+  "timestamp": "2026-09-12T06:15:07.291474+00:00",
+  "metadata": {}
+}

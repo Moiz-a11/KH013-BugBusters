@@ -1,0 +1,12 @@
+{
+  "_id": "AL-0007",
+  "allocation_id": "AL-0007",
+  "incident_id": "INC-0002",
+  "zone_id": "ZONE-B",
+  "resource_id": "RES-006",
+  "resource_type": "boat",
+  "quantity": 1,
+  "agency_id": "AG-001",
+  "status": "allocated",
+  "created_at": "2026-09-12T09:16:04.144639+00:00"
+}

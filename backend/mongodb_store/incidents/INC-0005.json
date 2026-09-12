@@ -1,0 +1,32 @@
+{
+  "_id": "INC-0005",
+  "zone_id": "ZONE-E",
+  "disaster_type": "cyclone",
+  "people_affected": 900,
+  "medical_emergency": false,
+  "rescue_required": false,
+  "infrastructure_damage": false,
+  "vulnerable_population": false,
+  "raw_text": "Cyclone warning with 900 people requiring shelter and evacuation support.",
+  "needs": {
+    "food_packet": 540,
+    "water_bottle": 900,
+    "medical_kit": 20,
+    "rescue_team": 1,
+    "ambulance": 0,
+    "shelter": 270,
+    "boat": 0
+  },
+  "priority_score": 12.2,
+  "severity": "LOW",
+  "priority_reasons": [],
+  "duplicate_check": {
+    "detected": false,
+    "overlap": {},
+    "existing_allocations": []
+  },
+  "incident_id": "INC-0005",
+  "status": "active",
+  "created_at": "2026-09-12T06:15:19.658292+00:00",
+  "updated_at": "2026-09-12T06:15:19.661545+00:00"
+}

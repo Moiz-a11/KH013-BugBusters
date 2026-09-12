@@ -1,0 +1,9 @@
+{
+  "_id": "RES-001",
+  "resource_id": "RES-001",
+  "type": "food_packet",
+  "quantity": 5000,
+  "available_quantity": 2400,
+  "agency_id": "AG-003",
+  "status": "available"
+}

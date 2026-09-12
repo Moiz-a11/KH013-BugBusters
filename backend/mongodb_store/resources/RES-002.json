@@ -1,0 +1,9 @@
+{
+  "_id": "RES-002",
+  "resource_id": "RES-002",
+  "type": "water_bottle",
+  "quantity": 8000,
+  "available_quantity": 4000,
+  "agency_id": "AG-003",
+  "status": "available"
+}

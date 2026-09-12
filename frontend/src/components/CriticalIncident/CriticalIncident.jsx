@@ -22,6 +22,7 @@ import {
 
 import Panel from "../common/Panel";
 import SeverityBadge from "../common/SeverityBadge";
+import PendingReportsPanel from "../dashboard/PendingReportsPanel";
 import { api } from "../../api";
 
 /**
@@ -91,7 +92,22 @@ const disasterTypes = [
   { id: "other", label: "Other", emoji: "❓" },
 ];
 
-export default function CriticalIncidents({ zones = [] }) {
+export default function CriticalIncidents({
+  zones = [],
+  pendingIncidents = [],
+  action,
+  incidents = [],
+}) {
+  const effectivePending = useMemo(() => {
+    if (Array.isArray(pendingIncidents) && pendingIncidents.length > 0) {
+      return pendingIncidents;
+    }
+    if (Array.isArray(incidents)) {
+      return incidents.filter((i) => i.status === "pending");
+    }
+    return [];
+  }, [pendingIncidents, incidents]);
+
   const [zoneId, setZoneId] = useState("");
   const [report, setReport] = useState("");
   const [disasterType, setDisasterType] = useState("");
@@ -223,7 +239,12 @@ export default function CriticalIncidents({ zones = [] }) {
     setError("");
 
     try {
-      const optResult = await api.optimize();
+      let optResult;
+      if (result.incident_id) {
+        optResult = await api.approveIncident(result.incident_id);
+      } else {
+        optResult = await api.optimize();
+      }
 
       setApprovalResult(optResult);
       setApprovalStatus("approved");
@@ -368,6 +389,13 @@ export default function CriticalIncidents({ zones = [] }) {
         </div>
       </section>
 
+      {/* Pending Public Reports Panel for EOC Responder Review */}
+      {effectivePending && effectivePending.length > 0 && (
+        <PendingReportsPanel
+          pendingIncidents={effectivePending}
+          onActionSuccess={(msg) => action && action(() => Promise.resolve(), msg)}
+        />
+      )}
 
       {/* =====================================================
           AGENTIC WORKFLOW
@@ -863,17 +891,25 @@ export default function CriticalIncidents({ zones = [] }) {
               <ul className="mt-3 space-y-2">
 
                 <li className="flex items-start gap-2 text-[11px] leading-relaxed text-slate-600">
-                  <span className="font-bold text-blue-600">01</span>
+                  <span className="font-bold text-blue-600">1.</span>
                   <span>
-                    <strong className="text-slate-800">
-                      {result.people_affected || 0} individuals
-                    </strong>{" "}
-                    trapped or endangered in Sector {result.zone_id}.
+                    {result.people_affected && Number(result.people_affected) > 0 ? (
+                      <>
+                        <strong className="text-slate-800">
+                          {result.people_affected} people affected
+                        </strong>{" "}
+                        in Sector {result.zone_id}.
+                      </>
+                    ) : (
+                      <strong className="text-slate-800">
+                        Population impact: Not specified in report
+                      </strong>
+                    )}
                   </span>
                 </li>
 
                 <li className="flex items-start gap-2 text-[11px] leading-relaxed text-slate-600">
-                  <span className="font-bold text-blue-600">02</span>
+                  <span className="font-bold text-blue-600">2.</span>
                   <span>
                     <strong className="text-slate-800">
                       {result.severity} severity
@@ -887,7 +923,7 @@ export default function CriticalIncidents({ zones = [] }) {
                 </li>
 
                 <li className="flex items-start gap-2 text-[11px] leading-relaxed text-slate-600">
-                  <span className="font-bold text-blue-600">03</span>
+                  <span className="font-bold text-blue-600">3.</span>
                   <span>
                     Critical situation factors:{" "}
                     <strong className="text-slate-800">
@@ -900,7 +936,7 @@ export default function CriticalIncidents({ zones = [] }) {
 
                 {conf && (
                   <li className="flex items-start gap-2 text-[11px] leading-relaxed text-slate-600">
-                    <span className="font-bold text-blue-600">04</span>
+                    <span className="font-bold text-blue-600">4.</span>
 
                     <span>
                       Trained ML model{" "}
@@ -1619,18 +1655,18 @@ export default function CriticalIncidents({ zones = [] }) {
             {/* =================================================
                 SUBMIT
             ================================================== */}
-            <div className="border-t border-slate-100 pt-5">
+            <div className="border-t border-slate-100 pt-5 flex justify-end">
 
               <button
                 type="submit"
                 disabled={isSubmitting}
                 className="
-                  group flex w-full
+                  group flex h-[46px] w-[340px]
                   items-center justify-center
                   gap-2.5
                   rounded-xl
                   bg-red-600
-                  px-6 py-3.5
+                  px-6
                   text-[10px] font-bold
                   uppercase tracking-wider
                   text-white

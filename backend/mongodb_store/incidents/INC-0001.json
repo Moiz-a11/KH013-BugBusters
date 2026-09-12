@@ -1,0 +1,36 @@
+{
+  "_id": "INC-0001",
+  "zone_id": "ZONE-A",
+  "disaster_type": "flood",
+  "people_affected": 2500,
+  "medical_emergency": true,
+  "rescue_required": true,
+  "infrastructure_damage": true,
+  "vulnerable_population": false,
+  "raw_text": "Severe flood. 2500 people are stranded. The hospital needs medicine and rescue support.",
+  "needs": {
+    "food_packet": 1500,
+    "water_bottle": 2500,
+    "medical_kit": 150,
+    "rescue_team": 2,
+    "ambulance": 2,
+    "shelter": 750,
+    "boat": 1
+  },
+  "priority_score": 65.0,
+  "severity": "HIGH",
+  "priority_reasons": [
+    "medical emergency",
+    "rescue required",
+    "infrastructure damage"
+  ],
+  "duplicate_check": {
+    "detected": false,
+    "overlap": {},
+    "existing_allocations": []
+  },
+  "incident_id": "INC-0001",
+  "status": "active",
+  "created_at": "2026-09-12T06:15:07.292759+00:00",
+  "updated_at": "2026-09-12T06:15:17.375626+00:00"
+}

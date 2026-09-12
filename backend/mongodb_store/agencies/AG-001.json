@@ -1,0 +1,10 @@
+{
+  "_id": "AG-001",
+  "agency_id": "AG-001",
+  "name": "Fire Department",
+  "capabilities": [
+    "rescue_team",
+    "boat"
+  ],
+  "status": "active"
+}

@@ -1,0 +1,9 @@
+{
+  "_id": "RES-004",
+  "resource_id": "RES-004",
+  "type": "rescue_team",
+  "quantity": 8,
+  "available_quantity": 4,
+  "agency_id": "AG-001",
+  "status": "available"
+}

@@ -1,0 +1,11 @@
+{
+  "_id": "MIS-0009",
+  "mission_id": "MIS-0009",
+  "incident_id": "INC-0004",
+  "zone_id": "ZONE-D",
+  "agency_id": "AG-003",
+  "resource_type": "water_bottle",
+  "quantity": 3000,
+  "status": "dispatched",
+  "created_at": "2026-09-12T09:16:04.169464+00:00"
+}

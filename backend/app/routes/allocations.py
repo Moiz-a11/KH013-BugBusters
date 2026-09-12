@@ -14,18 +14,23 @@ async def optimize():
     # Reset available quantities before applying the fresh global allocation.
     for r in store.resources.values():
         r["available_quantity"] = r["quantity"]
+        store.save_resource(r)
 
     store.allocations.clear()
     store.missions.clear()
+    from app.db import clear_entities
+    clear_entities("allocations")
+    clear_entities("missions")
 
     for p in proposals:
         rid = p["resource_id"]
         r = store.resources[rid]
         r["available_quantity"] = max(0, r["available_quantity"] - p["quantity"])
+        store.save_resource(r)
         aid = p["agency_id"]
         allocation_id = f"AL-{len(store.allocations)+1:04d}"
         allocation = {"allocation_id": allocation_id, **p, "created_at": store.now()}
-        store.allocations[allocation_id] = allocation
+        store.save_allocation(allocation)
 
         mission_id = f"MIS-{len(store.missions)+1:04d}"
         mission = {
@@ -33,7 +38,7 @@ async def optimize():
             "agency_id": aid, "resource_type": p["resource_type"], "quantity": p["quantity"],
             "status": "dispatched", "created_at": store.now()
         }
-        store.missions[mission_id] = mission
+        store.save_mission(mission)
 
     store.add_audit("ALLOCATION_OPTIMIZED",
                     f"Global allocation recalculated for {len(active)} active incidents",

@@ -1,22 +1,22 @@
 const styles = {
   critical: {
-    badge: "border-red-500/40 bg-red-950/40 text-red-300 shadow-[0_0_10px_rgba(239,68,68,0.15)]",
-    dot: "bg-red-400 animate-pulse",
+    badge: "border-red-200 bg-red-50 text-red-700 font-semibold",
+    dot: "bg-red-500 animate-pulse",
   },
   high: {
-    badge: "border-amber-500/40 bg-amber-950/30 text-amber-300",
-    dot: "bg-amber-400",
+    badge: "border-amber-200 bg-amber-50 text-amber-700 font-semibold",
+    dot: "bg-amber-500",
   },
   medium: {
-    badge: "border-yellow-500/30 bg-yellow-950/20 text-yellow-300",
-    dot: "bg-yellow-400",
+    badge: "border-yellow-200 bg-yellow-50 text-yellow-800 font-semibold",
+    dot: "bg-yellow-500",
   },
   low: {
-    badge: "border-emerald-500/30 bg-emerald-950/20 text-emerald-300",
-    dot: "bg-emerald-400",
+    badge: "border-blue-200 bg-blue-50 text-blue-700 font-semibold",
+    dot: "bg-blue-500",
   },
   monitoring: {
-    badge: "border-slate-700 bg-slate-900/60 text-slate-300",
+    badge: "border-slate-200 bg-slate-100 text-slate-700 font-semibold",
     dot: "bg-slate-400",
   },
 };
@@ -29,8 +29,8 @@ export default function SeverityBadge({ severity = "medium", className = "" }) {
     <span
       className={`
         inline-flex items-center gap-1.5
-        rounded border px-2 py-0.5
-        font-mono text-[10px] font-semibold uppercase tracking-wider
+        rounded-md border px-2 py-0.5
+        font-mono text-[10px] uppercase tracking-wider
         ${activeStyle.badge}
         ${className}
       `}

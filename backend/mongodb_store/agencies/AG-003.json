@@ -1,0 +1,11 @@
+{
+  "_id": "AG-003",
+  "agency_id": "AG-003",
+  "name": "Relief NGO",
+  "capabilities": [
+    "food_packet",
+    "water_bottle",
+    "shelter"
+  ],
+  "status": "active"
+}

@@ -1,0 +1,11 @@
+{
+  "_id": "MIS-0001",
+  "mission_id": "MIS-0001",
+  "incident_id": "INC-0001",
+  "zone_id": "ZONE-A",
+  "agency_id": "AG-003",
+  "resource_type": "food_packet",
+  "quantity": 800,
+  "status": "dispatched",
+  "created_at": "2026-09-12T09:16:04.087114+00:00"
+}

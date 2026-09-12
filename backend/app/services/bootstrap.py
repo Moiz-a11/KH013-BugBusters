@@ -12,10 +12,10 @@ def bootstrap_demo():
         ("ZONE-E", "Zone E", 18.5642, 73.7769),
     ]
     for zid, name, lat, lon in zones:
-        store.zones[zid] = {
+        store.save_zone({
             "zone_id": zid, "name": name, "latitude": lat, "longitude": lon,
             "population": 1000, "severity": 0, "priority_score": 0, "status": "monitoring"
-        }
+        })
 
     agencies = [
         ("AG-001", "Fire Department", ["rescue_team", "boat"]),
@@ -24,7 +24,7 @@ def bootstrap_demo():
         ("AG-004", "Police Department", ["evacuation", "security"]),
     ]
     for aid, name, capabilities in agencies:
-        store.agencies[aid] = {"agency_id": aid, "name": name, "capabilities": capabilities, "status": "active"}
+        store.save_agency({"agency_id": aid, "name": name, "capabilities": capabilities, "status": "active"})
 
     resources = [
         ("RES-001","food_packet",5000,"AG-003"),("RES-002","water_bottle",8000,"AG-003"),
@@ -33,10 +33,11 @@ def bootstrap_demo():
         ("RES-007","shelter",2000,"AG-003"),
     ]
     for rid, typ, qty, aid in resources:
-        store.resources[rid] = {
+        store.save_resource({
             "resource_id": rid, "type": typ, "quantity": qty,
             "available_quantity": qty, "agency_id": aid, "status": "available"
-        }
+        })
 
     store.seeded = True
     store.add_audit("SYSTEM_INITIALIZED", "Five-zone demo environment initialized", "system")
+

@@ -1,0 +1,10 @@
+{
+  "_id": "LOG-00003",
+  "log_id": "LOG-00003",
+  "event_type": "HUMAN_APPROVED",
+  "description": "EOC Controller approved report INC-0001 in ZONE-A. Priority: 65.0",
+  "actor": "human",
+  "incident_id": "INC-0001",
+  "timestamp": "2026-09-12T06:15:17.377383+00:00",
+  "metadata": {}
+}
